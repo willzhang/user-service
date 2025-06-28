@@ -1,0 +1,14 @@
+name: "user-service"
+
+services:
+  user-service:
+    image: registry.cn-shenzhen.aliyuncs.com/cnmirror/user-service:v1.0
+    container_name: user-service
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
